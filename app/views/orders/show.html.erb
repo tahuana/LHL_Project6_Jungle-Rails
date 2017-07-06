@@ -4,6 +4,8 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
 
+  <% UserMailer.order_email(current_user, @order).deliver_now %>
+
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
     <h5>The email "<%= @order.email %>" was used.</h5>
