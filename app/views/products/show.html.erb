@@ -24,6 +24,43 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
+
+    </div>
+
+    <% if current_user.present? %>
+
+      <div class="row">
+
+        <div class="col-sm-8">
+            <%= form_for(:review, url:"/products/#{@product.id}/reviews") do |form| %>
+              <dl class="dl-horizontal">
+                <dt><%= form.label :rating %></dt>
+                <dd><%= form.select :rating, [1,2,3,4,5], class: 'form-control' %></dd>
+                <dt><br><%= form.label :description %></dt>
+                <dd><br><%= form.text_area :description, class: 'form-control' %></dd>
+                <dt></dt>
+                <dd><br><%= form.submit "Send review" , class: 'btn btn-primary' %></dd>
+              </dl>
+            <% end %>
+        </div>
+      </div>
+
+    <% end %>
+
+    <div class="row">
+
+        <% if @reviews.present? %>
+          <% @reviews.each do |review| %>
+            <%= render 'review', review: review  %>
+          <% end %>
+        <% else %>
+          <div class="col-sm-8">
+            <dl class="dl-horizontal">
+              <dd>This product doesn't have any review.</dd>
+            </dl>
+          </div>
+        <% end %>
+
     </div>
 
   </article>
