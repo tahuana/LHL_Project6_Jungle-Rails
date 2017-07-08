@@ -1,18 +1,21 @@
-<div class="col-sm-8">
-  <dl class="dl-horizontal">
-    <dt>Rating</dt>
-    <dd><%= review.rating %></dd>
-    <dt>Review</dt>
-    <dd><%= review.description %></dd>
+<div class="each_review">
 
-    <% if current_user.present? && review.user_id == current_user.id %>
-      <dt>Delete</dt>
-      <dd><%= link_to product_review_remove_item_path(product_id: @product.id, review_id: review.id), class: 'btn btn-xs btn-danger', method: :delete do %>
-          -
-        <% end %>
-      </dd>
-    <% end %>
-
-  </dl>
+  <table>
+    <tr>
+      <td><b>Rating:</b></td>
+      <td><%= review.rating %></td>
+    </tr>
+    <tr>
+      <td><b>Review:</b></td>
+      <td><%= review.description %></td>
+    </tr>
+  </table>
+  <% if current_user.present? && review.user_id == current_user.id %>
+    <span >
+      <%= link_to product_review_remove_item_path(product_id: @product.id, review_id: review.id), class: 'btn btn-xs btn-danger', method: :delete do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+    </span>
+  <% end %>
 </div>
 

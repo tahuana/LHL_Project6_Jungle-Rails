@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
 
+# before_action :create
 
-
-  def create
+def create
     @product_id = params[:product_id]
     review = Review.new(review_params)
     review.user_id = current_user.id
@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
     end
 
   end
+
 
   def remove_item
     @review_id = params[:review_id]
@@ -32,5 +33,6 @@ class ReviewsController < ApplicationController
       :description,
     )
   end
+
 
 end

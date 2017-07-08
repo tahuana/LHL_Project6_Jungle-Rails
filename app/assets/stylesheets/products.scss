@@ -83,6 +83,36 @@ main section.products-show {
       max-width: 100%;
     }
   }
+
+  .input_review {
+    width: 700px;
+    margin:auto;
+    padding-top: 40px;
+
+    .text-area {
+      width: 500px;
+    }
+
+    .btn-primary {
+      margin-top: 15px;
+      margin-left:250px;
+
+    }
+  }
+
+  .show_reviews {
+    width: 700px;
+    margin:auto;
+    padding-top: 20px;
+    padding-left: 0px;
+
+  }
+
+  .each_review {
+    padding-top: 20px;
+  }
+
 }
+
 
 
