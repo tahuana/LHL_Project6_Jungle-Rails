@@ -78,6 +78,24 @@ RSpec.describe User, type: :model do
         @user = User.create(first_name: "Carl", last_name: "Smith", email: "ex1@test.com", password: "1234", password_confirmation: "1234")
         expect(User.authenticate_with_credentials("ex1@test.com", "12345").present?).to eq(false)
     end
+
+    it "User should login with spaces before email" do
+        @user = User.create(first_name: "Carl", last_name: "Smith", email: "ex1@test.com", password: "1234", password_confirmation: "1234")
+        expect(User.authenticate_with_credentials(" ex1@test.com", "1234").present?).to eq(true)
+    end
+
+    it "User should login with spaces after email" do
+        @user = User.create(first_name: "Carl", last_name: "Smith", email: "ex1@test.com", password: "1234", password_confirmation: "1234")
+        expect(User.authenticate_with_credentials("ex1@test.com ", "1234").present?).to eq(true)
+    end
+
+    it "Email should be case insenitive" do
+      @user = User.create(first_name: "Ed", last_name: "Smith", email: "eXample@domain.COM", password: "1234", password_confirmation: "1234")
+      expect(User.authenticate_with_credentials("EXAMPLe@DOMAIN.CoM", "1234").present?).to eq(true)
+    end
+
   end
 
 end
+
+# Product.find(:conditions => ['name LIKE ?', name])
