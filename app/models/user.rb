@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :reviews
 
-  validates :first_name, :email, :password, :password_confirmation, presence: true
-  validates :email, uniqueness: true
+  validates :first_name, :last_name, :email, :password, :password_confirmation, presence: true
+  validates :email, :uniqueness => {:case_sensitive => false}
 
 end
