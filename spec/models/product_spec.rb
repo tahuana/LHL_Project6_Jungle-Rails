@@ -33,6 +33,25 @@ RSpec.describe Product, type: :model do
 
     end
 
+    context "Price:" do
+
+      it "Product should have price" do
+        expect(@product.price.present?).to eq(true)
+      end
+
+      it "Product without a price should log error" do
+        @category = Category.create(name: 'Apparel')
+        @product = @category.products.create({
+          name:  'Hipster Hat',
+          description: "Test",
+          quantity: 10,
+          price: nil
+        })
+        expect(@product.errors.full_messages.present?).to eq(true)
+      end
+
+    end
+
   end
 end
 
